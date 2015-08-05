@@ -9,7 +9,7 @@
 <body>
 <div id="Eingabefeld"></div>
 <script type="text/jsx">
-  var MarkdownEditor = React.createClass({
+  var Eingabefeld = React.createClass({                                                                                 //Variable "Eingabefeld" mit Inhalt wird erstellt
     getInitialState: function() {
       return {value: 'Eingabefeld - Bitte hier beliebigen Text eingeben!'};
     },
@@ -18,16 +18,16 @@
     },
     render: function() {
       return (
-        <div className="MarkdownEditor">
+        <div className="Eingabefeld">                                                                                   {/* Eigentliches Eingabefeld wird erstellt */}
           <h1><u>Eingabefeld</u></h1>
           <h3>Eingabe</h3>
           <textarea
             onChange={this.handleChange}
             ref="textarea"
             defaultValue={this.state.value} />
-          <h3>Ausgabe</h3>
+          <h3>Ausgabe</h3>                                                                                               {/*Ausgabefeld wird erstellt*/}
           <div
-            className="content"
+            className="ausgabe"
             dangerouslySetInnerHTML={{
             __html: marked(this.state.value, {sanitize: true})
           }}
@@ -36,8 +36,8 @@
       );
     }
   });
-  React.render(
-    <MarkdownEditor />,
+  React.render(                                                                                                         //"Befehl" um dem Browser zu sagen, dass er Rendern soll
+    <Eingabefeld />,
     document.body
   );
 </script>
