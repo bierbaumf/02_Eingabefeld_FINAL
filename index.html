@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eingabefeld</title>
+  <script src="src/react.js"></script>
+  <script src="src/JSXTransformer.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+</head>
+<body>
+<div id="Eingabefeld"></div>
+<script type="text/jsx">
+  var MarkdownEditor = React.createClass({
+    getInitialState: function() {
+      return {value: 'Eingabefeld - Bitte hier beliebigen Text eingeben!'};
+    },
+    handleChange: function() {
+      this.setState({value: React.findDOMNode(this.refs.textarea).value});
+    },
+    render: function() {
+      return (
+        <div className="MarkdownEditor">
+          <h1><u>Eingabefeld</u></h1>
+          <h3>Eingabe</h3>
+          <textarea
+            onChange={this.handleChange}
+            ref="textarea"
+            defaultValue={this.state.value} />
+          <h3>Ausgabe</h3>
+          <div
+            className="content"
+            dangerouslySetInnerHTML={{
+            __html: marked(this.state.value, {sanitize: true})
+          }}
+            />
+        </div>
+      );
+    }
+  });
+  React.render(
+    <MarkdownEditor />,
+    document.body
+  );
+</script>
+</body>
+</html>
